@@ -1,0 +1,17 @@
+### Deskripsi
+Membangun mesin scraping yang secara spesifik menyaring data skripsi dari Fakultas Vokasi dan melakukan ekstraksi teks terbatas (Abstrak & Bab 1).
+
+### Tugas Teknis
+1. **Filter Fakultas Vokasi**:
+   - Pada halaman pencarian utama (`ir.unair.ac.id/opac/`), implementasikan parameter filter atau seleksi elemen untuk memastikan hanya record dengan label "Fakultas Vokasi" yang diambil.
+   - Jika filter melalui URL tidak memungkinkan, lakukan pengecekan pada teks elemen "Fakultas" di halaman detail sebelum melanjutkan ke proses download (`if 'Fakultas Vokasi' in page_source: proceed_to_scraping() else: skip()`).
+2. **Metadata Crawler**:
+   - Ambil data: Judul, Pengarang, Subjek, dan NIM dari halaman detail.
+3. **Targeted OCR (Halaman 1-15)**:
+   - Gunakan URL dari tab Network untuk mengunduh gambar halaman 1-15 saja per dokumen.
+   - Konversi gambar ke teks menggunakan EasyOCR dengan akselerasi GPU RTX 3050.
+4. **Penyimpanan Terstruktur**:
+   - Simpan hasil ke database PostgreSQL dengan flag/kolom tambahan `fakultas: "Vokasi"`.
+
+### Kriteria Selesai
+- Dataset awal berisi minimal 100-200 record yang semuanya berasal dari Fakultas Vokasi.

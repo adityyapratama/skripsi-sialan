@@ -1,0 +1,15 @@
+### Deskripsi
+Diasumsikan koneksi VPN sudah aktif secara manual di laptop. Tugas skrip adalah memastikan koneksi ke `ir.unair.ac.id` tersedia dan melakukan login untuk mendapatkan akses dokumen.
+
+### Tugas Teknis
+1. **Network Connectivity Check**:
+   - Buat fungsi untuk melakukan "ping" atau request ringan ke `https://ir.unair.ac.id/opac/`. Jika gagal, berikan peringatan: "Pastikan VPN OpenVPN sudah menyala!"
+2. **Automated Session Login**:
+   - Gunakan `requests.Session()` untuk menangani modal login yang muncul. Kirim data NIM dan Password Cybercampus ke endpoint login.
+   - **Penting**: Simpan objek session ini. Jangan tutup session agar cookies tetap tersimpan selama proses scraping berjalan.
+3. **Akses Halaman Detail & Filter Vokasi**:
+   - Buka URL detail (contoh: `detail-opac?id=...`). Pastikan skrip membaca label "Fakultas Vokasi" sebelum memulai proses unduh gambar.
+
+### Kriteria Selesai
+- Skrip berhasil mendeteksi koneksi VPN.
+- Skrip berhasil login dan mendapatkan cookies yang valid untuk mengakses gambar di folder `/temporary/`.

@@ -1,0 +1,14 @@
+### Description
+Akses ke repository `ir.unair.ac.id` bersifat terbatas. Sistem membutuhkan koneksi terenkripsi (VPN) dan autentikasi akun **Cyber Unair** untuk membaca dokumen secara utuh.
+
+### Tasks
+1. **OpenVPN Automation**: 
+   - Siapkan instruksi penggunaan file `.ovpn` melalui CLI.
+   - Gunakan variabel lingkungan (`.env`) untuk menyimpan `VPN_USERNAME` and `VPN_PASSWORD` akun Cyber. **Dilarang keras hardcode kredensial!**
+2. **Session Handling (SSO Login)**:
+   - Buat modul `auth.py` menggunakan `requests.Session()`.
+   - Implementasikan fungsi login ke portal Cyber agar mendapatkan *session cookie* yang valid.
+   - Pastikan session ini dibawa saat melakukan request ke halaman "Baca Online".
+
+### Note
+AI Agent harus memastikan koneksi VPN aktif sebelum mencoba melakukan request ke domain internal kampus.
