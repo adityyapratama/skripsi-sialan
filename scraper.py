@@ -21,9 +21,9 @@ DB_NAME = os.getenv("DB_NAME", "skripsi_db")
 DB_USER = os.getenv("DB_USER", "postgres")
 DB_PASSWORD = os.getenv("DB_PASSWORD")
 
-# Inisialisasi MESIN OCR (Memakai CPU)
-print("Menginisialisasi model EasyOCR di mode CPU...")
-ocr_reader = easyocr.Reader(['id', 'en'], gpu=False)
+# Inisialisasi MESIN OCR (Memakai GPU VRAM RTX 3050)
+print("Menginisialisasi model EasyOCR di mode GPU (CUDA)...")
+ocr_reader = easyocr.Reader(['id', 'en'], gpu=True)
 
 # Direktori sementara untuk menyimpan gambar halaman sebelum di-OCR
 TMP_IMG_DIR = "temp_pages"
@@ -39,6 +39,18 @@ def get_db_connection():
     except Exception as e:
         print(f"Error Database: {e}")
         return None
+
+def get_existing_urls(db_conn):
+    """Mengambil daftar URL dokumen yang sudah ada di database agar tidak di-scrape ulang."""
+    try:
+        cursor = db_conn.cursor()
+        cursor.execute("SELECT url_source FROM raw_documents")
+        existing = {row[0] for row in cursor.fetchall()}
+        cursor.close()
+        return existing
+    except Exception as e:
+        print(f"Gagal mengambil riwayat dokumen: {e}")
+        return set()
 
 def clear_temp_images():
     """Menghapus gambar sementara setelah proses OCR selesai untuk 1 dokumen."""
@@ -106,9 +118,14 @@ def extract_base_image_url(soup):
             
     return None
 
-def process_document(session, doc_id, db_conn):
+def process_document(session, doc_id, db_conn, existing_urls):
     """Memproses 1 URL halaman dari pengunduhan sampai database."""
     detail_url = f"{IR_BASE_URL}detail-opac?id={doc_id}"
+    
+    if detail_url in existing_urls:
+        print(f"\n--- SKIPPED: {doc_id} sudah ada di Database ---")
+        return True
+        
     print(f"\n--- Memproses Dokumen ID: {doc_id} ---")
     
     try:
@@ -131,41 +148,84 @@ def process_document(session, doc_id, db_conn):
             # Tetap simpan metadata meski URL gambar gak ada.
             base_img_url = ""
         
-        # 4. Targeted OCR: Mengambil Halaman 1-2 (Cover), Halaman 6-10 (Abstrak/Bab 1)
-        # Kita melompati halaman 3-5 untuk menghemat waktu CPU karena biasanya isinya Kata Pengantar/Daftar Isi.
-        full_text_results = []
-        target_pages = [1, 2, 6, 7, 8, 9, 10] 
+        # 4. Targeted OCR: Pencarian Dinamis dengan Algoritma Pengenalan Pola Teks
+        # Kita mem-parsing Halaman 1 per 1, dan akan langsung BERHENTI saat sistem mendeteksi teks "BAB 2" atau "BAB II" 
+        # (sehingga tidak ada buang waktu OCR untuk sub bab yg tidak berguna).
+        abstract_results = []
+        bab1_results = []
+        
+        # Penanda state
+        found_abstrak = False
+        found_bab1 = False
+        stop_ocr = False
         
         if base_img_url:
-            for page_num in target_pages:
+            for page_num in range(1, 30): # Batasan keamanan (Failsafe 30 hlm jika polanya tdk ketemu)
+                if stop_ocr:
+                    break
+                    
                 img_url = f"{base_img_url}{page_num}.jpg"
                 img_path = os.path.join(TMP_IMG_DIR, f"page_{page_num}.jpg")
                 
                 print(f"  -> Mengunduh halaman {page_num} dari: {img_url}")
                 
                 try:
-                    # Mengunduh asli dari link image Mobile Flipbook
                     img_res = session.get(img_url, stream=True, verify=False, timeout=15)
                     if img_res.status_code == 200:
                         with open(img_path, 'wb') as f:
                             for chunk in img_res.iter_content(1024):
                                 f.write(chunk)
                         
-                        print(f"  -> OCR sedang membaca halaman {page_num}...")
-                        # Proses ekstraksi teks menggunakan metode CPU
+                        print(f"  -> OCR membaca halaman {page_num}...")
                         result = ocr_reader.readtext(img_path, detail=0)
                         cleansed_text = " ".join(result)
-                        full_text_results.append(cleansed_text)
-                        print(f"  -> Teks berhasil diekstrak (panjang: {len(cleansed_text)}).")
+                        cleansed_upper = cleansed_text.upper()
+                        
+                        # ALGORITMA PENGENALAN POLA
+                        
+                        # 1. Hindari membaca halaman "Daftar Isi" yang sering mengandung kata Abstrak/Bab 1
+                        if "............." in cleansed_text or "DAFTAR ISI" in cleansed_upper:
+                            print("     [-] Ini daftar isi/tabel, dilewati.")
+                            continue
+                            
+                        # 2. Deteksi BAB 2 (Prioritas Tertinggi: Stop Trigger)
+                        # Menghentikan pencarian dokumen bila mencapai akhir Bab 1 / tinjauan pustaka
+                        if "BAB II " in cleansed_upper or "BAB 2 " in cleansed_upper or "TINJAUAN PUSTAKA" in cleansed_upper:
+                            print("     [!] Pola BAB 2 Terdeteksi. Menghentikan OCR dokumen ini (Selesai).")
+                            stop_ocr = True
+                            break # Hentikan unduh page PDF agar hemat performa
+                            
+                        # 3. Deteksi BAB 1 Pendahuluan (Format Roman atau Angka)
+                        # Lebih spesifik agar tidak terpicu dengan sebatas kata "Pendahuluan" di Abstrak.
+                        if "BAB I " in cleansed_upper or "BAB I" in cleansed_upper and "PENDAHULUAN" in cleansed_upper or "BAB 1 " in cleansed_upper:
+                            if not found_bab1:
+                                print("     [+] Pola BAB I (PENDAHULUAN) terdeteksi secara utuh!")
+                            found_bab1 = True
+                            found_abstrak = False # Hentikan pengisian abstrak saat masuk ke zona Bab 1
+                            
+                        # 4. Deteksi Lembar Abstrak
+                        elif "ABSTRAK" in cleansed_upper or "ABSTRACT" in cleansed_upper:
+                            if not found_bab1: # Hanya mulai abstrak jika memang bab 1 belum dideteksi
+                                if not found_abstrak:
+                                    print("     [+] Pola ABSTRAK terdeteksi!")
+                                found_abstrak = True
+                                
+                        # Logika Penyimpanan Teks
+                        if found_bab1:
+                            bab1_results.append(cleansed_text)
+                        elif found_abstrak:
+                            abstract_results.append(cleansed_text)
+                            
                     else:
-                        print(f"  -> Gagal mengunduh halaman {page_num} (Status {img_res.status_code})")
-                        break # Jika page 1 gak ada, biasanya page 2 dst jg gak ada
+                        print(f"  -> Batas halaman akhir PDF tercapai (Status {img_res.status_code})")
+                        break 
                 except Exception as read_err:
                     print(f"  -> Kesalahan pada halaman {page_num}: {read_err}")
                 
-                time.sleep(1) # Rate limit download gambar
+                time.sleep(1)
         
-        gabungan_text = " ".join(full_text_results)
+        abstract_text = " ".join(abstract_results)
+        bab1_text = " ".join(bab1_results)
         
         # 5. Database Storage (PostgreSQL dg flag Vokasi)
         print("=> Menyimpan ke Database PostgreSQL dan CSV...")
@@ -173,7 +233,7 @@ def process_document(session, doc_id, db_conn):
         # Insert DB
         cursor = db_conn.cursor()
         insert_query = """
-            INSERT INTO raw_documents (title, author, program_study, subject, raw_text, cleaned_text, url_source)
+            INSERT INTO raw_documents (title, author, program_study, subject, abstract_text, bab1_text, url_source)
             VALUES (%s, %s, %s, %s, %s, %s, %s)
             ON CONFLICT (url_source) DO NOTHING
         """
@@ -182,8 +242,8 @@ def process_document(session, doc_id, db_conn):
             meta['author'], 
             meta['program_study'], 
             meta['subject'],
-            gabungan_text, 
-            gabungan_text, 
+            abstract_text, 
+            bab1_text, 
             detail_url
         ))
         db_conn.commit()
@@ -195,14 +255,14 @@ def process_document(session, doc_id, db_conn):
         with open(csv_file, 'a', newline='', encoding='utf-8') as cb:
             writer = csv.writer(cb)
             if not file_exists:
-                writer.writerow(['title', 'author', 'program_study', 'subject', 'raw_text', 'cleaned_text', 'url_source'])
+                writer.writerow(['title', 'author', 'program_study', 'subject', 'abstract_text', 'bab1_text', 'url_source'])
             writer.writerow([
                 meta['title'], 
                 meta['author'], 
                 meta['program_study'], 
                 meta['subject'], 
-                gabungan_text, 
-                gabungan_text, 
+                abstract_text, 
+                bab1_text, 
                 detail_url
             ])
             
@@ -215,10 +275,12 @@ def process_document(session, doc_id, db_conn):
         return False
 
 def main_scraper():
-    print("=== Menjalankan Mesin Scraping (Mode Fakultas Vokasi - CPU) ===")
+    print("=== Menjalankan Mesin Scraping (Mode Fakultas Vokasi - Mode GPU/CUDA) ===")
     
     db_conn = get_db_connection()
     if not db_conn: return
+    
+    existing_urls = get_existing_urls(db_conn)
 
     existing_ids = get_existing_doc_ids(db_conn)
     print(f"=> Info: Ditemukan {len(existing_ids)} dokumen di Database. Akan dilewati agar efisien.")
@@ -279,7 +341,7 @@ def main_scraper():
                 continue
                 
             print(f"--- [Prodi: {prodi_url.split('=')[-1]}] Memproses {idx}/{len(doc_ids)} ---")
-            is_success = process_document(session, doc_id, db_conn)
+            is_success = process_document(session, doc_id, db_conn, existing_urls)
             if is_success:
                 existing_ids.add(doc_id)
             time.sleep(3) # Delay anti-banned
