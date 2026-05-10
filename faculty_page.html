@@ -1,0 +1,899 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-86963932-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-86963932-2');
+</script>
+        
+
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-param" content="_OpacInlislite">
+    <meta name="csrf-token" content="bFMwM0E4M2M0Bnl6KXp2VFk4XWs3aFUZVCpyB3YIdlA6EkhkJA5dJA==">
+    <title>Online Public Access Catalog - AILiS-Airlangga Integrated Library Systems</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="shortcut icon" type='image/x-icon' href="/opac/../uploaded_files/aplikasi/favicon.png">
+
+
+    <!--  <link rel="shortcut icon" type='image/x-icon' href="../.../uploaded_files/aplikasi/favicon.png"> -->
+
+    <link href="/opac/assets/730fecae/css/bootstrap.css" rel="stylesheet">
+<link href="/opac/assets_b/css/_all-skins.css" rel="stylesheet">
+<link href="/opac/assets_b/css/ionicons.min.css" rel="stylesheet">
+<link href="/opac/assets_b/css/bootstrap.css" rel="stylesheet">
+<link href="/opac/assets_b/css/font-awesome.min.css" rel="stylesheet">
+<link href="/opac/assets_b/css/style-slider.css" rel="stylesheet">
+<link href="/opac/assets_b/css/datatables.css" rel="stylesheet">
+<link href="/opac/assets_b/css/AdminLTE.css" rel="stylesheet">
+<link href="/opac/assets_b/css/site.css" rel="stylesheet">
+<link href="/opac/assets_b/css/styles.css" rel="stylesheet">
+</head>
+
+
+<body onload="startTime()" class="skin-blue layout-top-nav">
+    <div class="wrapper" style=" background-color: #FFF;">
+        <!-- Header web -->
+        <header class="main-header">
+            <!-- navbar -->
+            <nav class="navbar navbar-static-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <div class="title">
+                           <!--  <div class="image"> <a href='/opac/'> <img src=".././uploaded_files/aplikasi/logo_perpusnas_2015.png" class="img-logo" height="65" width="70"> </a></div> -->
+                           <!--  <div class="image"> <a href='/opac/'> <img src="/opac/../uploaded_files/aplikasi/logo_perpusnas_2015.png" class="img-logo" height="65" width="70"> </a></div> -->
+                            <div class="image"><a href="/opac/"><img src="/opac/../uploaded_files/aplikasi/logo_perpusnas_2015.png" class="img-logo" height="65" width="70"></a></div> 
+                            <div class="text">
+                                <h3 style="margin-top: 20px;">Online Public Access Catalog</h3>
+                                <div class="clear"></div>
+                                <div class="time">PERPUSTAKAAN UNIVERSITAS AIRLANGGA</div><br/>
+                                <div class="clear"></div>
+                                <div class="timeddr" style="margin-bottom: 10px"></div>
+                                <div class="clear"></div>
+                            </div>
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <div class="clear">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse pull-right" id="navbar-collapse">
+                        <span class="pull-right" style="color:#fff; margin-right:5px; margin-top:5px" id="clocktime" ></span><br>
+                        <ul class="nav navbar-nav pull-right">        
+            
+                    <li> <a class="bookmarkShow" href="javascript:void(0)"  onclick='tampilBooking()' ></a> </li>     
+                    <li> <a href="/opac/bookmark">Tampung</a> </li>
+                      
+
+                         <li> <a href="javascript:void(0)"  onclick='tampilLogin()'>Login</a> </li>
+                       <!-- <li> <a href="../pendaftaran">Registrasi</a> </li> -->
+                                                  
+                  </ul>
+
+                    </div><!-- /.navbar-collapse -->
+                    <!-- Navbar Right Menu -->
+                    <!-- /.navbar-custom-menu -->
+                </div><!-- /.container-fluid -->
+            </nav>
+            <!-- /navbar -->
+            <!-- prasasti custom --> 
+<style type="text/css"> 
+.nav-black { width: 100%; }
+.symbolic_link 
+{ white-space: nowrap; border-right: 1px solid #666; padding-left: 5px; color: #333; padding-right: 5px; }
+#Katakunci{ border: 1px solid #f00;}
+</style>
+
+<div class="nav-yellow" style="background-color: #FFD700; border-bottom:1px solid #e0c10e; min-height:25px">
+<div class="li-nav-3-top-2" style="
+    min-height: 21px;
+    text-align: left;
+    font-size: 12px;
+    color: #333;
+    float: none;
+    max-width:810px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 3px;
+    b">
+<a class="symbolic_link" href="https://ir.unair.ac.id/"><i class="fa fa-home"></i> Home</a>   
+<a span class="symbolic_link" href="/opac"><i class="fa fa-search"></i> OPAC</a>
+<a span class="symbolic_link" href="/keanggotaan/site/login"><i class="fa fa-user"></i> Keanggotaan</a>
+ 
+</div>
+</div>
+<div class="nav-yellow-bottom" style="background-color: #e0b10e; border-top:1px solid #e0c10e; min-height:1px"></div>
+
+
+
+        </header>
+
+                           <section class="content-search">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-sm-12">
+                      <span class="nav-tabs-custom">
+                          <ul class="nav nav-tabs">
+                            <li class="active"> <a href="#tab_1" data-toggle="tab">Cari</a> </li>
+
+                    <li> <a href="/opac/browsev2">Browse</a> </li>
+
+                          </ul>
+                        </span>
+                        </div>
+                        </div>
+                    <form action="/opac/pencarian-sederhana" method="GET"/>
+                    <input type="hidden" name="action" value="pencarianSederhana"/>
+
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab_1">
+                  <div class="col-sm-4"><div class="form-group">
+                          <input type="text" class="form-control" name="katakunci" id="KataKunci" placeholder="Kata Kunci" size="25" required ></div></div>
+                      <div class="col-sm-4"><div class="form-group">
+
+                    <select  class="form-control" name="ruas">
+                      <option value="Judul">Judul</option>
+                      <option value="Pengarang">Pengarang</option>
+                  
+                      <option value="Subyek">Subyek</option>
+                    <!--  
+                          <option value="Penerbit">Penerbitan</option>  
+                      <option value="Nomor Panggil">Nomor Panggil</option>
+                      <option value="ISBN">ISBN</option>
+                      <option value="ISSN">ISSN</option>                    
+                      <option value="ISMN">ISMN</option> -->
+                      <option value="Semua Ruas">Sembarang</option> 
+
+                    </select>
+                              </form>
+                      </div></div>
+                      <div class="col-sm-3"><div class="form-group">
+
+                              <select class="form-control" name="bahan" onChange="getData(this);" >
+                      <option value =''>Laporan Magang Profesi (Akuntasi)</option> <option value =''>Studi Kasus</option> <option value ='SKPS'>Skripsi</option> <option value ='TGKH'>TUGAS AKHIR (Diploma)</option> <option value ='THSS'>THESIS</option> <option value ='DSRT'>Disertasi</option> <option value ='PKLN'>Praktek Kerja Lapangan (PKL)</option> <option value ='PKMM'>PKM</option> <option value ='PDKT'>PPDS - Karya Tugas Akhir (Spesialis)</option> <option value =''>Karya Ilmiah Akhir (NERS)</option> 
+                      <option value="Semua Jenis Bahan" selected>Semua Bahan</option>
+
+                    </select>
+                              
+                      </div></div>
+
+
+
+
+
+
+                      <div class="col-sm-1"><input class="btn btn-success" type="submit" value="Cari"  align="right"></div>
+                   </div>
+
+                   </div>
+                  <div class="row">&nbsp;</div>
+                  <div class="row">
+                  <div class="col-sm-12">&nbsp; &nbsp; <a href="/opac/pencarian-lanjut">Pencarian lanjut </a> - <a href="/opac/riwayat-pencarian">Riwayat Pencarian </a> - <a href="" data-toggle="modal" data-target="#modalBantuan">Bantuan</a> </div>
+                  </div>
+                  
+
+                 <!-- Modal -->
+                  <div class="modal fade" id="modalBantuan" role="dialog">
+                    <div class="modal-dialog">
+
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Bantuan</h4>
+                        </div>
+                        <div class="modal-body">
+
+                            <ul>
+                            <li> Pencarian sederhana adalah pencarian koleksi dengan menggunakan hanya satu kriteria pencarian saja. </li>
+                            <li> Ketikkan kata kunci pencarian, misalnya : " Sosial kemasyarakatan "  </li>
+                            <li> Pilih ruas yang dicari, misalnya : " Judul " . </li>
+                            <li> Pilih jenis koleksi misalnya  " Monograf(buku) ", atau biarkan pada  pilihan " Semua Jenis Bahan "</li>
+                            <li> Klik tombol "Cari" atau tekan tombol Enter pada keyboard </li>
+
+                        </ul>
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                    
+                    </div>
+                </section>
+                         <!-- Full Width Column -->
+          <div id="alert">
+          </div>
+          <div id="usulan">
+          </div>
+                <div class="content-wrapper" style="min-height: 507px;">
+            <div class="container">
+                <!-- Content Header (Page header) -->
+
+                <!-- Main content -->
+                <section class="content">
+                 <!--     -->
+                    <div class="box box-default">
+                        <br><h1><i class='fa fa-university'></i> Fakultas Indexing</h1>
+<p>File indexing ini dibuat pada: <strong>2026-05-10 14:38:28</strong></p>
+<h2>Fakultas Kedokteran (5140)</h2>
+<table class='table table-bordered table-striped'>
+<thead>
+<tr>
+<th>Program Studi</th>
+<th>Total Katalog</th>
+<th>Aksi</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>--</a></td><td>7</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=181' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Kebidanan -S1</a></td><td>606</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=181' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=182' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Kedokteran -S1</a></td><td>1485</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=182' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=183' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Kesehatan Reproduksi-S2</a></td><td>39</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=183' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=184' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Kesehatan Olah Raga-S2</a></td><td>58</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=184' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=185' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Kedokteran Tropis-S2</a></td><td>22</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=185' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=186' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Kedokteran Dasar-S2</a></td><td>121</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=186' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=187' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Kedokteran Klinik-S2</a></td><td>784</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=187' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=188' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Imunologi-S2</a></td><td>7</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=188' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=189' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Kedokteran-S3</a></td><td>205</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=189' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=190' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Pendidikan Dokter-PROFESI</a></td><td>8</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=190' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=191' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Pendidikan Bidan-PROFESI</a></td><td>1</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=191' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=192' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Kardiologi Dan Kedokteran Vaskular-SPESIALIS</a></td><td>75</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=192' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=193' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Patologi Anatomi-SPESIALIS</a></td><td>29</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=193' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=194' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Patologi Klinik-SPESIALIS</a></td><td>62</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=194' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=195' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Kedokteran Fisik Dan Rehabilitasi-SPESIALIS</a></td><td>100</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=195' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=196' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Radiologi-SPESIALIS</a></td><td>73</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=196' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=197' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Bedah Saraf-SPESIALIS</a></td><td>46</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=197' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=198' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Andrologi-SPESIALIS</a></td><td>37</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=198' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=199' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Mikrobiologi Klinik-SPESIALIS</a></td><td>44</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=199' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=200' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Bedah Toraks Kardiovaskular-SPESIALIS</a></td><td>39</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=200' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=201' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Orthopaedi Dan Traumatologi-SPESIALIS</a></td><td>45</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=201' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=202' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Kesehatan Anak-SPESIALIS</a></td><td>98</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=202' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=203' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Kedokteran Forensik Dan Medikolegal-SPESIALIS</a></td><td>21</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=203' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=204' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Urologi-SPESIALIS</a></td><td>30</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=204' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=205' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Kesehatan Mata-SPESIALIS</a></td><td>91</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=205' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=206' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Penyakit Dalam-SPESIALIS</a></td><td>187</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=206' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=207' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Neurologi-SPESIALIS</a></td><td>77</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=207' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=208' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Bedah Plastik Rekonstruksi Dan Estetik-SPESIALIS</a></td><td>40</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=208' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=209' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Kesehatan Kulit dan Kelamin-SPESIALIS</a></td><td>18</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=209' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=210' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Kesehatan Telinga Hidung Tenggorok-SPESIALIS</a></td><td>69</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=210' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=211' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Bedah Kepala dan Leher-SPESIALIS</a></td><td>2</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=211' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=212' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Anestesiologi Dan Reanimasi-SPESIALIS</a></td><td>119</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=212' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=213' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Bedah-SPESIALIS</a></td><td>83</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=213' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=214' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Obstetri Dan Ginekologi-SPESIALIS</a></td><td>57</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=214' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=215' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Pulmonologi Dan Ilmu Kedokteran Respirasi-SPESIALIS</a></td><td>56</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=215' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=216' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Psikiatri-SPESIALIS</a></td><td>44</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=216' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=217' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Bedah Anak-SPESIALIS</a></td><td>15</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=217' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=218' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Penyakit Dalam-SUB SPESIALIS</a></td><td>33</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=218' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=219' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Anestesiologi Dan Reanimasi-SUB SPESIALIS</a></td><td>28</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=219' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=220' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Obstetri Dan Ginekologi-SUB SPESIALIS</a></td><td>35</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=220' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=221' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Kesehatan Anak-SUB SPESIALIS</a></td><td>41</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=221' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=222' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Patologi Klinik-SUB SPESIALIS</a></td><td>21</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=222' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=223' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Psikiatri Anak dan Remaja-SUB SPESIALIS</a></td><td>9</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=223' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=224' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Bedah Kepala Leher-SUB SPESIALIS</a></td><td>6</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=224' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=225' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Bedah Digestif-SUB SPESIALIS</a></td><td>10</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=225' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=366' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Dermatologi Venereologi dan Estetika-SPESIALIS</a></td><td>13</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=366' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=369' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Penyakit Jantung dan Pembuluh Darah-SPESIALIS</a></td><td>19</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=369' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=370' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Penyakit Jantung dan Pembuluh Darah-SUB SPESIALIS</a></td><td>3</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=370' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=371' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Pendidikan Kedokteran-S2</a></td><td>7</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=371' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=372' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Orthopaedi dan Traumatologi-SUB SPESIALIS</a></td><td>15</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=372' class='btn btn-primary'>Lihat Detail</a></td></tr>
+</tbody>
+</table><br><h2>Fakultas Kesehatan Masyarakat (2588)</h2>
+<table class='table table-bordered table-striped'>
+<thead>
+<tr>
+<th>Program Studi</th>
+<th>Total Katalog</th>
+<th>Aksi</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>--</a></td><td>2</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=302' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Kesehatan Masyarakat-S1</a></td><td>1231</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=302' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=303' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Gizi-S1</a></td><td>540</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=303' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=304' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Kesehatan Masyarakat (PSDKU Banyuwangi)-S1</a></td><td>13</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=304' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=305' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Administrasi Dan Kebijakan Kesehatan-S2</a></td><td>214</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=305' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=306' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Kesehatan Masyarakat-S2</a></td><td>144</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=306' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=307' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Kesehatan Dan Keselamatan Kerja-S2</a></td><td>129</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=307' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=308' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Kesehatan Lingkungan-S2</a></td><td>74</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=308' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=309' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Epidemiologi-S2</a></td><td>89</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=309' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=310' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Kesehatan-S3</a></td><td>152</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=310' class='btn btn-primary'>Lihat Detail</a></td></tr>
+</tbody>
+</table><br><h2>Fakultas Psikologi (1533)</h2>
+<table class='table table-bordered table-striped'>
+<thead>
+<tr>
+<th>Program Studi</th>
+<th>Total Katalog</th>
+<th>Aksi</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>--</a></td><td>1</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=311' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Psikologi-S1</a></td><td>1113</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=311' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=312' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Psikologi Terapan-S2</a></td><td>39</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=312' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=313' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Psikologi-S2</a></td><td>128</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=313' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=314' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Psikologi Profesi -S2</a></td><td>205</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=314' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=315' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Psikologi-S3</a></td><td>47</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=315' class='btn btn-primary'>Lihat Detail</a></td></tr>
+</tbody>
+</table><br><h2>Fakultas Ilmu Budaya (2477)</h2>
+<table class='table table-bordered table-striped'>
+<thead>
+<tr>
+<th>Program Studi</th>
+<th>Total Katalog</th>
+<th>Aksi</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>--</a></td><td>1</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=316' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Sejarah-S1</a></td><td>392</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=316' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=317' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Studi Kejepangan-S1</a></td><td>353</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=317' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=318' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Bahasa dan Sastra Indonesia-S1</a></td><td>683</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=318' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=319' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Bahasa dan Sastra Inggris-S1</a></td><td>856</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=319' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=320' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Kajian Sastra dan Budaya-S2</a></td><td>96</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=320' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=321' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Linguistik-S2</a></td><td>96</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=321' class='btn btn-primary'>Lihat Detail</a></td></tr>
+</tbody>
+</table><br><h2>Fakultas Keperawatan (2541)</h2>
+<table class='table table-bordered table-striped'>
+<thead>
+<tr>
+<th>Program Studi</th>
+<th>Total Katalog</th>
+<th>Aksi</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>--</a></td><td>36</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=322' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Keperawatan-S1</a></td><td>1366</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=322' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=323' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Keperawatan-S2</a></td><td>285</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=323' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=324' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Keperawatan-S3</a></td><td>99</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=324' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=325' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Profesi Keperawatan-PROFESI</a></td><td>701</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=325' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=326' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Keperawatan Medikal Bedah-SPESIALIS</a></td><td>54</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=326' class='btn btn-primary'>Lihat Detail</a></td></tr>
+</tbody>
+</table><br><h2>Fakultas Perikanan dan Kelautan (1568)</h2>
+<table class='table table-bordered table-striped'>
+<thead>
+<tr>
+<th>Program Studi</th>
+<th>Total Katalog</th>
+<th>Aksi</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>--</a></td><td>1</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=327' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Akuakultur-S1</a></td><td>867</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=327' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=328' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Akuakultur (PSDKU Banyuwangi)-S1</a></td><td>46</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=328' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=329' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Teknologi Hasil Perikanan-S1</a></td><td>543</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=329' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=330' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Bioteknologi Perikanan dan Kelautan-S2</a></td><td>67</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=330' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=331' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Perikanan-S2</a></td><td>44</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=331' class='btn btn-primary'>Lihat Detail</a></td></tr>
+</tbody>
+</table><br><h2>Fakultas Vokasi (5205)</h2>
+<table class='table table-bordered table-striped'>
+<thead>
+<tr>
+<th>Program Studi</th>
+<th>Total Katalog</th>
+<th>Aksi</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=322' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Keperawatan-S1</a></td><td>2</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=322' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=332' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Pengobat Tradisional-D4</a></td><td>249</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=332' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=333' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Fisioterapi-D4</a></td><td>142</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=333' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=334' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Teknologi Radiologi Pencitraan-D4</a></td><td>328</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=334' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=335' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Keperawatan-D3</a></td><td>594</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=335' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=336' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Fisioterapi-D3</a></td><td>21</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=336' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=337' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Teknologi Laboratorium Medis-D3</a></td><td>193</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=337' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=338' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Pengobat Tradisional-D3</a></td><td>11</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=338' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=339' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Teknik Gigi-D3</a></td><td>270</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=339' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=340' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Manajemen Perbankan-D3</a></td><td>84</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=340' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=341' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Manajemen Kesekretariatan Dan Perkantoran-D3</a></td><td>155</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=341' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=342' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Akuntansi-D3</a></td><td>383</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=342' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=343' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Perpajakan-D3</a></td><td>519</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=343' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=344' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Manajemen Pemasaran-D3</a></td><td>329</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=344' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=345' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Manajemen Perhotelan-D3</a></td><td>141</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=345' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=346' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Paramedik Veteriner-D3</a></td><td>168</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=346' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=347' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Perpustakaan-D3</a></td><td>282</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=347' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=348' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Kepariwisataan / Bina Wisata-D3</a></td><td>97</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=348' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=349' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Otomasi Sistem Instrumentasi-D3</a></td><td>38</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=349' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=350' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Sistem Informasi-D3</a></td><td>135</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=350' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=351' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Hiperkes Dan Keselamatan Kerja-D3</a></td><td>248</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=351' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=352' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Bahasa Inggris-D3</a></td><td>281</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=352' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=361' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Teknologi Rekayasa Instrumentasi dan Kontrol-D4</a></td><td>61</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=361' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=362' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Destinasi Pariwisata
+-D4</a></td><td>117</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=362' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=363' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Manajemen Perhotelan-D4</a></td><td>128</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=363' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=364' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Perbankan dan Keuangan-D4</a></td><td>104</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=364' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=368' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Kearsipan dan Informasi Digital-D4</a></td><td>1</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=368' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=373' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Teknik Informatika-D4</a></td><td>52</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=373' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=374' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Manajemen Perkantoran Digital-D4</a></td><td>72</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=374' class='btn btn-primary'>Lihat Detail</a></td></tr>
+</tbody>
+</table><br><h2>Sekolah Teknologi Maju dan Multidisiplin (746)</h2>
+<table class='table table-bordered table-striped'>
+<thead>
+<tr>
+<th>Program Studi</th>
+<th>Total Katalog</th>
+<th>Aksi</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=353' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Teknik Robotika dan Kecerdasan Buatan-S1</a></td><td>111</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=353' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=354' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Teknik Elektro-S1</a></td><td>128</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=354' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=355' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Teknik Industri-S1</a></td><td>182</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=355' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=356' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Rekayasa Nano Teknologi-S1</a></td><td>137</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=356' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=357' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Teknologi Sains Data-S1</a></td><td>188</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=357' class='btn btn-primary'>Lihat Detail</a></td></tr>
+</tbody>
+</table><br><h2>Sekolah Ilmu Kesehatan dan Ilmu Alam (500)</h2>
+<table class='table table-bordered table-striped'>
+<thead>
+<tr>
+<th>Program Studi</th>
+<th>Total Katalog</th>
+<th>Aksi</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=246' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Akuntansi (Pdd Banyuwangi)-S1</a></td><td>1</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=246' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=262' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Kedokteran Hewan -S1</a></td><td>2</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=262' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=263' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Kedokteran Hewan (PDD Banyuwangi)-S1</a></td><td>179</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=263' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=304' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Kesehatan Masyarakat (PSDKU Banyuwangi)-S1</a></td><td>162</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=304' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=327' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Akuakultur-S1</a></td><td>1</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=327' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=328' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Akuakultur (PSDKU Banyuwangi)-S1</a></td><td>155</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=328' class='btn btn-primary'>Lihat Detail</a></td></tr>
+</tbody>
+</table><br><h2>Fakultas Kedokteran Gigi (1554)</h2>
+<table class='table table-bordered table-striped'>
+<thead>
+<tr>
+<th>Program Studi</th>
+<th>Total Katalog</th>
+<th>Aksi</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>--</a></td><td>2</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=226' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Kedokteran Gigi -S1</a></td><td>1029</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=226' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=227' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Kesehatan Gigi-S2</a></td><td>66</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=227' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=228' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Kedokteran Gigi -S3</a></td><td>34</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=228' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=229' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Pendidikan Dokter Gigi -PROFESI</a></td><td>34</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=229' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=230' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Konservasi Gigi-SPESIALIS</a></td><td>98</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=230' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=231' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Bedah Mulut Dan Maksilofasial-SPESIALIS</a></td><td>54</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=231' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=232' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Penyakit Mulut-SPESIALIS</a></td><td>30</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=232' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=233' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Kedokteran Gigi Anak-SPESIALIS</a></td><td>43</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=233' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=234' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Prostodonsia-SPESIALIS</a></td><td>32</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=234' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=235' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Orthodonsia-SPESIALIS</a></td><td>74</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=235' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=236' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Periodonsia-SPESIALIS</a></td><td>47</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=236' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=367' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Spesialis Radiologi Kedokteran Gigi-SPESIALIS</a></td><td>11</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=367' class='btn btn-primary'>Lihat Detail</a></td></tr>
+</tbody>
+</table><br><h2>Fakultas Hukum (2807)</h2>
+<table class='table table-bordered table-striped'>
+<thead>
+<tr>
+<th>Program Studi</th>
+<th>Total Katalog</th>
+<th>Aksi</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>--</a></td><td>1</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=237' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Hukum-S1</a></td><td>1337</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=237' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=238' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Kenotariatan-S2</a></td><td>679</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=238' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=239' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Hukum-S2</a></td><td>655</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=239' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=240' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Sains Hukum Dan Pembangunan-S2</a></td><td>3</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=240' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=241' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Hukum-S3</a></td><td>132</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=241' class='btn btn-primary'>Lihat Detail</a></td></tr>
+</tbody>
+</table><br><h2>Fakultas Ekonomi dan Bisnis (6631)</h2>
+<table class='table table-bordered table-striped'>
+<thead>
+<tr>
+<th>Program Studi</th>
+<th>Total Katalog</th>
+<th>Aksi</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>--</a></td><td>1</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=242' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Akuntansi-S1</a></td><td>1476</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=242' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=243' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ekonomi Pembangunan-S1</a></td><td>832</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=243' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=244' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Manajemen-S1</a></td><td>1340</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=244' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=245' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ekonomi Islam-S1</a></td><td>1092</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=245' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=246' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Akuntansi (Pdd Banyuwangi)-S1</a></td><td>5</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=246' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=247' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Ekonomi-S2</a></td><td>165</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=247' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=248' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Akuntansi-S2</a></td><td>336</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=248' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=249' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Sains Manajemen-S2</a></td><td>192</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=249' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=250' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Sains Ekonomi Islam -S2</a></td><td>216</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=250' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=251' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Magister Manajemen-S2</a></td><td>487</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=251' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=252' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Ekonomi-S3</a></td><td>39</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=252' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=253' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Ekonomi Islam -S3</a></td><td>62</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=253' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=254' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Akuntansi-S3</a></td><td>127</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=254' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=255' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Manajemen-S3</a></td><td>104</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=255' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=256' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Pendidikan Profesi Akuntansi-PROFESI</a></td><td>85</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=256' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=342' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Akuntansi-D3</a></td><td>1</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=342' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=344' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Manajemen Pemasaran-D3</a></td><td>1</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=344' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=375' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Ekonomi-S1</a></td><td>70</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=375' class='btn btn-primary'>Lihat Detail</a></td></tr>
+</tbody>
+</table><br><h2>Fakultas Farmasi (1504)</h2>
+<table class='table table-bordered table-striped'>
+<thead>
+<tr>
+<th>Program Studi</th>
+<th>Total Katalog</th>
+<th>Aksi</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>--</a></td><td>1</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=257' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Farmasi-S1</a></td><td>1122</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=257' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=258' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Farmasi Klinik -S2</a></td><td>127</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=258' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=259' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Farmasi -S2</a></td><td>197</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=259' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=260' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Farmasi-S3</a></td><td>48</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=260' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=261' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Pendidikan Apoteker-PROFESI</a></td><td>9</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=261' class='btn btn-primary'>Lihat Detail</a></td></tr>
+</tbody>
+</table><br><h2>Fakultas Kedokteran Hewan (1547)</h2>
+<table class='table table-bordered table-striped'>
+<thead>
+<tr>
+<th>Program Studi</th>
+<th>Total Katalog</th>
+<th>Aksi</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>--</a></td><td>28</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=262' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Kedokteran Hewan -S1</a></td><td>1226</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=262' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=263' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Kedokteran Hewan (PDD Banyuwangi)-S1</a></td><td>21</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=263' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=264' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Vaksinologi Dan Imunoterapetika-S2</a></td><td>33</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=264' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=265' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Penyakit dan Kesehatan Masyarakat Veteriner-S2</a></td><td>75</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=265' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=266' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Biologi Reproduksi-S2</a></td><td>53</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=266' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=267' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Agribisnis Veteriner-S2</a></td><td>65</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=267' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=268' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Sains Veteriner-S3</a></td><td>42</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=268' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=269' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Pendidikan Dokter Hewan-PROFESI</a></td><td>4</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=269' class='btn btn-primary'>Lihat Detail</a></td></tr>
+</tbody>
+</table><br><h2>Fakultas Ilmu Sosial dan Ilmu Politik (4398)</h2>
+<table class='table table-bordered table-striped'>
+<thead>
+<tr>
+<th>Program Studi</th>
+<th>Total Katalog</th>
+<th>Aksi</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>--</a></td><td>1</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=270' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Sosiologi-S1</a></td><td>537</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=270' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=271' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Komunikasi-S1</a></td><td>582</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=271' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=272' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Hubungan Internasional-S1</a></td><td>541</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=272' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=273' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Administrasi Negara-S1</a></td><td>200</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=273' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=274' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Antropologi-S1</a></td><td>470</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=274' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=275' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Informasi Dan Perpustakaan-S1</a></td><td>496</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=275' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=276' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Politik-S1</a></td><td>497</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=276' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=277' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Kebijakan Publik-S2</a></td><td>164</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=277' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=278' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Sosiologi-S2</a></td><td>80</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=278' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=279' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Hubungan Internasional-S2</a></td><td>88</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=279' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=280' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Politik-S2</a></td><td>64</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=280' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=281' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Media Dan Komunikasi-S2</a></td><td>166</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=281' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=282' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Sosial-S3</a></td><td>123</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=282' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=300' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Pengembangan Sumber Daya Manusia -S2</a></td><td>1</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=300' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=358' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Administrasi Publik-S1</a></td><td>373</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=358' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=377' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Magister Sains Informasi dan Perpustakaan-S2</a></td><td>15</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=377' class='btn btn-primary'>Lihat Detail</a></td></tr>
+</tbody>
+</table><br><h2>Fakultas Sains dan Teknologi (3410)</h2>
+<table class='table table-bordered table-striped'>
+<thead>
+<tr>
+<th>Program Studi</th>
+<th>Total Katalog</th>
+<th>Aksi</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=283' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Matematika-S1</a></td><td>479</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=283' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=284' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Sistem Informasi -S1</a></td><td>360</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=284' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=285' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Statistika-S1</a></td><td>430</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=285' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=286' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Fisika-S1</a></td><td>365</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=286' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=287' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Teknik biomedis-S1</a></td><td>305</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=287' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=288' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Kimia-S1</a></td><td>354</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=288' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=289' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Biologi-S1</a></td><td>437</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=289' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=290' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Teknik Lingkungan-S1</a></td><td>348</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=290' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=291' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Biologi-S2</a></td><td>117</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=291' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=292' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Teknik Biomedis-S2</a></td><td>41</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=292' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=293' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Kimia-S2</a></td><td>85</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=293' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=294' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Matematika dan Ilmu Pengetahuan Alam -S3</a></td><td>69</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=294' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=365' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Matematika-S2</a></td><td>20</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=365' class='btn btn-primary'>Lihat Detail</a></td></tr>
+</tbody>
+</table><br><h2>Sekolah Pasca Sarjana (1013)</h2>
+<table class='table table-bordered table-striped'>
+<thead>
+<tr>
+<th>Program Studi</th>
+<th>Total Katalog</th>
+<th>Aksi</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=295' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Forensik-S2</a></td><td>130</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=295' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=296' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Imunologi-S2</a></td><td>66</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=296' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=297' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Sains Hukum Dan Pembangunan-S2</a></td><td>96</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=297' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=298' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Kajian Ilmu Kepolisian-S2</a></td><td>235</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=298' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=299' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Manajemen Bencana-S2</a></td><td>25</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=299' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=300' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Pengembangan Sumber Daya Manusia -S2</a></td><td>368</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=300' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=301' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Pengembangan Sumber Daya Manusia-S3</a></td><td>72</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=301' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=359' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ekonomi Kesehatan-S2</a></td><td>19</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=359' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=360' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Hukum dan Pembangunan-S3</a></td><td>1</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=360' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=371' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Pendidikan Kedokteran-S2</a></td><td>1</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=371' class='btn btn-primary'>Lihat Detail</a></td></tr>
+</tbody>
+</table><br><h2>Tidak Diketahui (85)</h2>
+<table class='table table-bordered table-striped'>
+<thead>
+<tr>
+<th>Program Studi</th>
+<th>Total Katalog</th>
+<th>Aksi</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>--</a></td><td>83</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=197' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Ilmu Bedah Saraf-SPESIALIS</a></td><td>1</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=197' class='btn btn-primary'>Lihat Detail</a></td></tr>
+<tr><td><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=300' style='font-weight:bold; color:#39C; text-decoration:none; font-size: 16px;'>Pengembangan Sumber Daya Manusia -S2</a></td><td>1</td><td style='text-align: right;'><a href='/opac/browsev2/view-faculty-result-indexing?prodiId=300' class='btn btn-primary'>Lihat Detail</a></td></tr>
+</tbody>
+</table><br>                    </div>
+                </section><!-- /.content -->
+            </div><!-- /.container -->
+        </div><!-- /.content-wrapper -->
+
+
+    <footer class="footer main-footer">
+      <div class="container">
+        <div class="pull-right hidden-sm" style="font-family: "Corbel", Arial, Helvetica, sans-serif;">
+          INLISLite v3.0        </div>
+        AILIS Modified by IT TEAM Perpustakaan Universitas Airlangga 2026 <a href="lib.unair.ac.id" target="_blank">Perpustakaan Universitas Airlangga</a>
+    <br>Hak Cipta &copy; 2026 <a href="http://inlislite.perpusnas.go.id" target="_blank">Perpustakaan Nasional Republik Indonesia</a><br>      </div> <!-- /.container -->
+    </footer>
+        <script src="/opac/assets/4d8770d4/jquery.js"></script>
+<script src="/opac/assets/3e672fb6/yii.js"></script>
+<script src="/opac/assets_b/js/app.js"></script>
+<script src="/opac/assets_b/js/bootstrap.min.js"></script>
+<script src="/opac/assets_b/js/datatables.js"></script>
+<script type="text/javascript">jQuery(document).ready(function () {
+
+        $(document).ready(
+            function() {
+                $('a.bookmarkShow').hide();
+            }
+        );
+        
+});</script>    </div><!-- ./wrapper -->
+</body>
+</html>
+
+<script>
+    //alert(Date());
+  function startTime()
+  {   var today=new Date();
+    var weekday=new Array(7);
+    var weekday=["Minggu","Senin","Selasa","Rabu","Kamis","Jum'at","Sabtu"];
+    var monthname=new Array(12);
+    var monthname=["","Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","Septeber","Oktober","November","Desember"];
+    var dayname=weekday[0];
+    var day=10;
+    var month=monthname[05];
+    var year=2026;
+    var h=03;
+    var m=53;
+    var s=37;
+    h=checkTime(h);
+    m=checkTime(m);
+    s=checkTime(s);
+    document.getElementById('clocktime').innerHTML=dayname+", "+day+" "+month+" "+year+", "+h+":"+m+":"+s;
+    t=setTimeout(function(){startTime()},500);
+  }
+  // function checkTime to add a zero in front of numbers < 10
+  function checkTime(i)
+  {   if(i<10){i="0"+i;}
+    return i;
+  }
+  function getData(dropdown) {
+    var value = dropdown.options[dropdown.selectedIndex].value;
+    if(document.getElementById("dariTGL").style.display == "inline"){
+
+    }
+    document.getElementById("dariTGL").style.display = "none"
+    document.getElementById("sampaiTGL").style.display = "none"
+    if (value == '4'){   
+      document.getElementById("dariTGL").style.display = "inline"
+      document.getElementById("sampaiTGL").style.display = "inline"
+    }
+  }
+    function tampilBooking() {
+        $.ajax({
+            type: "POST",
+            cache: false,
+            url: "booking?action=showBookingDetail",
+            success: function (response) {
+                $("#modalBooking").modal('show');
+                $("#BookingShow").html(response);
+            }
+        });
+    }
+    function tampilUsulan() {
+        $.ajax({
+            type: "POST",
+            cache: false,
+            url: "usulan-koleksi?action=showUsulan",
+            success: function (response) {
+                $("#modalUsulan").modal('show');
+                $("#UsulanShow").html(response);
+            }
+        });
+    }
+
+      function tampilLogin() {
+        $.ajax({
+            type: "POST",
+            cache: false,
+            url: "site/login",
+            success: function (response) {
+                $("#modalLogin").modal('show');
+                $("#LoginShow").html(response);
+            }
+        });
+
+    }
+
+    function cancelBooking(id) {
+        $.ajax({
+            type: "POST",
+            cache: false,
+            url: "booking?action=cancelBooking&colID="+id,
+            success: function (response) {
+                $("#modalBooking").modal('hide');
+                $("#alert").html(response);
+            }
+        });
+    }
+
+    function loginAnggota() {
+        $.ajax({
+            type: "POST",
+            cache: false,
+            url: "site/loginanggota",
+            data : $("#login-anggota").serialize(), 
+            success: function (response) {
+                console.log(response);
+                if (response) {
+                  $("#error-login-opac-123-321").html(response);
+                }
+            }
+
+        });
+    }
+
+
+  var MaxInputs = 50;
+  var Dynamic = $("#Dynamic");
+  var i = $("#Dynamic div").size() + 1;
+
+  $("#AddInpElem").click( function () {
+    if (i <= MaxInputs) {
+      $("<div> <div class=\"row\">  <div class=\"col-sm-1\"></div>  <div class=\"col-sm-1\"><div class=\"form-group\"><select name=\"danAtau[]\" class=\"form-control\"><option value=\"and\">dan</option>  <option value=\"or\">atau</option>   <option value=\"selain\">selain</option>      </select></div></div><div class=\"col-sm-3\"><div class=\"form-group\">  <input name=\"katakunci[]\"  type=\"text\" class=\"form-control login-field\"  /></div></div><div class=\"col-sm-2\"><div class=\"form-group\"> <select name=\"jenis[]\" class=\"form-control\"><option>di dalam</option><option >di awal</option><option >di akhir</option> </select></div></div><div class=\"col-sm-3\"><div class=\"form-group\"><select   name=\"tag[]\" class=\"form-control\"> <option value=\"Judul\">Judul</option> <option value=\"Pengarang\">Pengarang</option> <option value=\"Penerbitan\">Penerbitan</option> <option value=\"Edisi\">Edisi</option> <option value=\"Deskripsi Fisik\">Deskripsi Fisik</option> <option value=\"Jenis Konten\">Jenis Konten</option> <option value=\"Jenis Media\">Jenis Media</option> <option value=\"Media Carrier\">Media Carrier</option> <option value=\"Subyek\">Subyek</option> <option value=\"ISBN\">ISBN</option> <option value=\"ISSN\">ISSN</option> <option value=\"ISMN\">ISMN</option> <option value=\"Nomor Panggil\">ISBN</option> <option value=\"Sembarang Ruas\">Sembarang Ruas </option>       </select> </div></div><a href=\"javascript:void(0)\" class=\"RemInpElem\"><span class=\"glyphicon glyphicon-minus-sign\"></span></a> &nbsp; </div> </div>").appendTo(Dynamic);
+      i++;
+    }
+    return false;
+  });
+
+
+$("body").on("click",".RemInpElem", function(){
+  if (i > 2) {
+    $(this).parent("div").remove();
+    i--;
+  }
+  return false;
+}) 
+
+
+</script>
+
+<div class="modal fade" id="modalBooking" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Booking Detail</h4>
+            </div>
+            <div class="modal-body">
+                <p id="demo"></p>
+                <div id="BookingShow">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:void(0)" id="PrintButton" class="btn btn-primary"> <span class="glyphicon glyphicon-print"></span>  Print  </a>&nbsp;&nbsp;
+                <button type="button" class="btn btn-default" data-dismiss="modal">&nbsp;Tutup&nbsp;</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalUsulan" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Usulan Koleksi</h4>
+            </div>
+            <div class="modal-body">
+                <p id="demo"></p>
+                <div id="UsulanShow">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalLogin" role="dialog">
+    <div class="modal-dialog modal-sm" >       
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Login IR</h4>
+            </div>
+            <div class="modal-body ">
+                <p id="demo"></p>
+                <div id="LoginShow">
+
+
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="modalBantuan" role="dialog">
+    <div class="modal-dialog">       
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Bantuan</h4>
+            </div>
+            <div class="modal-body">
+                <ul>
+              <li> Pencarian sederhana adalah pencarian koleksi dengan menggunakan hanya satu kriteria pencarian saja. </li>
+              <li> Ketikkan kata kunci pencarian, misalnya : " Sosial kemasyarakatan "  </li>
+              <li> Pilih ruas yang dicari, misalnya : " Judul " . </li>
+              <li> Pilih jenis koleksi misalnya  " Monograf(buku) ", atau biarkan pada  pilihan " Semua Jenis Bahan "</li>
+              <li> Klik tombol "Cari" atau tekan tombol Enter pada keyboard </li>
+          </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+ 

@@ -44,7 +44,7 @@ def get_existing_urls(db_conn):
     """Mengambil daftar URL dokumen yang sudah ada di database agar tidak di-scrape ulang."""
     try:
         cursor = db_conn.cursor()
-        cursor.execute("SELECT url_source FROM raw_documents")
+        cursor.execute("SELECT url_source FROM documents")
         existing = {row[0] for row in cursor.fetchall()}
         cursor.close()
         return existing
@@ -62,7 +62,7 @@ def get_existing_doc_ids(db_conn):
     existing_ids = set()
     try:
         cursor = db_conn.cursor()
-        cursor.execute("SELECT url_source FROM raw_documents WHERE url_source IS NOT NULL")
+        cursor.execute("SELECT url_source FROM documents WHERE url_source IS NOT NULL")
         for row in cursor.fetchall():
             url = row[0]
             if 'id=' in url:
@@ -74,28 +74,56 @@ def get_existing_doc_ids(db_conn):
 
 def scrape_metadata(soup):
     """
-    Ekstraksi Metadata Judul, Pengarang, Program Studi, Subjek dari tabel.
+    Ekstraksi metadata dari halaman detail ir.unair.ac.id.
+    Mengambil: title, author, supervisor, program_study, faculty,
+               pub_year, subject_keywords, language, url_baca_online.
     """
     metadata = {
         'title': 'Tidak Diketahui',
         'author': 'Tidak Diketahui',
-        'subject': 'Tidak Diketahui',
-        'program_study': 'Fakultas Vokasi'
+        'supervisor': '',
+        'program_study': 'Tidak Diketahui',
+        'faculty': '',
+        'pub_year': None,
+        'subject_keywords': '',
+        'language': 'Indonesia',
+        'url_baca_online': ''
     }
-    
+
     tds = soup.find_all('td')
     for i in range(len(tds) - 1):
         label = tds[i].text.strip().lower()
-        val = tds[i+1].text.strip()
-        
+        val = tds[i + 1].text.strip()
+
         if label == 'judul' and metadata['title'] == 'Tidak Diketahui':
             metadata['title'] = val
         elif label == 'pengarang' and metadata['author'] == 'Tidak Diketahui':
             metadata['author'] = val.replace('\n', ' ').strip()
-        elif label == 'subjek' and metadata['subject'] == 'Tidak Diketahui':
-            metadata['subject'] = val.replace('\n', ', ').strip()
-        elif label == 'program studi' and metadata['program_study'] == 'Fakultas Vokasi':
+        elif label == 'dosen pembimbing' and not metadata['supervisor']:
+            metadata['supervisor'] = val.replace('\n', ' ').strip()
+        elif label == 'program studi' and metadata['program_study'] == 'Tidak Diketahui':
             metadata['program_study'] = val
+        elif label == 'fakultas' and not metadata['faculty']:
+            metadata['faculty'] = val
+        elif label == 'penerbitan' and not metadata['pub_year']:
+            # Format: "Surabaya : Universitas Airlangga, 2025"
+            import re
+            year_match = re.search(r'\b(20\d{2})\b', val)
+            if year_match:
+                metadata['pub_year'] = int(year_match.group(1))
+        elif label == 'subjek' and not metadata['subject_keywords']:
+            metadata['subject_keywords'] = val.replace('\n', ', ').strip()
+        elif label == 'bahasa' and metadata['language'] == 'Indonesia':
+            metadata['language'] = val
+
+    # Ambil URL tombol "Baca Online"
+    baca_btn = soup.find('a', string=lambda t: t and 'Baca Online' in t)
+    if baca_btn and baca_btn.get('href'):
+        href = baca_btn.get('href')
+        if href.startswith('http'):
+            metadata['url_baca_online'] = href
+        else:
+            metadata['url_baca_online'] = f"https://ir.unair.ac.id/{href.lstrip('/')}"
 
     return metadata
 
@@ -139,6 +167,12 @@ def process_document(session, doc_id, db_conn, existing_urls):
         
         # 2. Ambil Metadata
         meta = scrape_metadata(soup)
+        
+        # FILTER: hanya proses dokumen terbitan tahun 2025
+        if meta['pub_year'] != 2025:
+            print(f"--- SKIP (bukan 2025, tahun={meta['pub_year']}): {meta['title'][:40]} ---")
+            return True
+
         print(f"Judul: {meta['title'][:50]}...")
         
         # 3. Cari Base URL untuk Gambar
@@ -160,7 +194,7 @@ def process_document(session, doc_id, db_conn, existing_urls):
         stop_ocr = False
         
         if base_img_url:
-            for page_num in range(1, 30): # Batasan keamanan (Failsafe 30 hlm jika polanya tdk ketemu)
+            for page_num in range(1, 16): # Target OCR: Halaman 1-15 sesuai instruksi
                 if stop_ocr:
                     break
                     
@@ -233,18 +267,30 @@ def process_document(session, doc_id, db_conn, existing_urls):
         # Insert DB
         cursor = db_conn.cursor()
         insert_query = """
-            INSERT INTO raw_documents (title, author, program_study, subject, abstract_text, bab1_text, url_source)
-            VALUES (%s, %s, %s, %s, %s, %s, %s)
+            INSERT INTO documents (
+                title, author, supervisor, program_study, faculty,
+                pub_year, subject_keywords, language,
+                abstract_text, bab1_text,
+                url_source, url_baca_online,
+                ocr_status
+            )
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             ON CONFLICT (url_source) DO NOTHING
         """
         cursor.execute(insert_query, (
-            meta['title'], 
-            meta['author'], 
-            meta['program_study'], 
-            meta['subject'],
-            abstract_text, 
-            bab1_text, 
-            detail_url
+            meta['title'],
+            meta['author'],
+            meta['supervisor'],
+            meta['program_study'],
+            meta['faculty'],
+            meta['pub_year'],
+            meta['subject_keywords'],
+            meta['language'],
+            abstract_text,
+            bab1_text,
+            detail_url,
+            meta['url_baca_online'],
+            'done' if abstract_text else 'failed'
         ))
         db_conn.commit()
         cursor.close()
@@ -255,15 +301,26 @@ def process_document(session, doc_id, db_conn, existing_urls):
         with open(csv_file, 'a', newline='', encoding='utf-8') as cb:
             writer = csv.writer(cb)
             if not file_exists:
-                writer.writerow(['title', 'author', 'program_study', 'subject', 'abstract_text', 'bab1_text', 'url_source'])
+                writer.writerow([
+                    'title', 'author', 'supervisor', 'program_study', 'faculty',
+                    'pub_year', 'subject_keywords', 'language',
+                    'abstract_text', 'bab1_text',
+                    'url_source', 'url_baca_online', 'ocr_status'
+                ])
             writer.writerow([
-                meta['title'], 
-                meta['author'], 
-                meta['program_study'], 
-                meta['subject'], 
-                abstract_text, 
-                bab1_text, 
-                detail_url
+                meta['title'],
+                meta['author'],
+                meta['supervisor'],
+                meta['program_study'],
+                meta['faculty'],
+                meta['pub_year'],
+                meta['subject_keywords'],
+                meta['language'],
+                abstract_text,
+                bab1_text,
+                detail_url,
+                meta['url_baca_online'],
+                'done' if abstract_text else 'failed'
             ])
             
         print("=> SUKSES: Data tersimpan di Database dan `data.csv`.")
@@ -275,7 +332,7 @@ def process_document(session, doc_id, db_conn, existing_urls):
         return False
 
 def main_scraper():
-    print("=== Menjalankan Mesin Scraping (Mode Fakultas Vokasi - Mode GPU/CUDA) ===")
+    print("=== Menjalankan Mesin Scraping (Mode SEMUA Fakultas - Mode GPU/CUDA) ===")
     
     db_conn = get_db_connection()
     if not db_conn: return
@@ -292,59 +349,53 @@ def main_scraper():
         db_conn.close()
         return
         
-    print("\nMengambil direktori Fakultas Vokasi...")
+    print("\nMengambil direktori seluruh fakultas...")
     index_url = "https://ir.unair.ac.id/opac/browsev2/view-faculty-indexing"
     res = session.get(index_url, verify=False)
     soup = BeautifulSoup(res.text, 'html.parser')
     
-    # Cari string "Fakultas Vokasi"
-    vokasi_header = soup.find('h2', string=lambda t: t and 'Fakultas Vokasi' in t)
-    
-    if not vokasi_header:
-        print("Tidak dapat menemukan header Fakultas Vokasi di halaman index.")
-        db_conn.close()
-        return
-        
-    # Tabel Prodi ada tepat setelah h2 Fakultas Vokasi
-    prodi_table = vokasi_header.find_next_sibling('table')
+    # Dengan ini (scrape SEMUA prodi dari semua fakultas):
+    print("Mengambil semua program studi dari seluruh fakultas...")
     prodi_links = []
-    
-    if prodi_table:
-        for a in prodi_table.find_all('a', class_='btn-primary'):
-            href = a.get('href')
-            if href and 'prodiId' in href:
-                full_url = f"https://ir.unair.ac.id{href}" if href.startswith('/') else href
+    for a in soup.find_all('a', class_='btn-primary'):
+        href = a.get('href')
+        if href and 'prodiId' in href:
+            full_url = f"https://ir.unair.ac.id{href}" if href.startswith('/') else href
+            if full_url not in prodi_links:
                 prodi_links.append(full_url)
-    
-    print(f"Ditemukan {len(prodi_links)} Program Studi Vokasi.")
+
+    print(f"Total ditemukan {len(prodi_links)} program studi dari seluruh Unair.")
     
     # Mode Pencarian Mendalam ke Seluruh Prodi & Seluruh Dokumen yang Tampil
     for prodi_url in prodi_links:
         print(f"\n=== MENGAMBIL DAFTAR DOKUMEN DARI PRODI: {prodi_url} ===")
-        res_prodi = session.get(prodi_url, verify=False)
-        prodi_soup = BeautifulSoup(res_prodi.text, 'html.parser')
-        
-        doc_ids = []
-        for a in prodi_soup.find_all('a'):
-            href = a.get('href')
-            if href and 'detail-opac?id=' in href:
-                doc_id = href.split('id=')[-1]
-                if doc_id not in doc_ids: # Hindari id duplikat di halaman yang sama
-                    doc_ids.append(doc_id)
-        
-        print(f"Ditemukan {len(doc_ids)} dokumen unik di halaman prodi ini.")
-        
-        # Iterasi mengunduh seluruh dokumen di halaman terkait
-        for idx, doc_id in enumerate(doc_ids, start=1):
-            if doc_id in existing_ids:
-                print(f"--- [Prodi: {prodi_url.split('prodiId=')[-1]}] SKIP {idx}/{len(doc_ids)}: ID {doc_id[:8]}... sudah tersimpan ---")
-                continue
-                
-            print(f"--- [Prodi: {prodi_url.split('=')[-1]}] Memproses {idx}/{len(doc_ids)} ---")
-            is_success = process_document(session, doc_id, db_conn, existing_urls)
-            if is_success:
-                existing_ids.add(doc_id)
-            time.sleep(3) # Delay anti-banned
+        try:
+            res_prodi = session.get(prodi_url, verify=False)
+            prodi_soup = BeautifulSoup(res_prodi.text, 'html.parser')
+            
+            doc_ids = []
+            for a in prodi_soup.find_all('a'):
+                href = a.get('href')
+                if href and 'detail-opac?id=' in href:
+                    doc_id = href.split('id=')[-1]
+                    if doc_id not in doc_ids: # Hindari id duplikat di halaman yang sama
+                        doc_ids.append(doc_id)
+            
+            print(f"Ditemukan {len(doc_ids)} dokumen unik di halaman prodi ini.")
+            
+            # Iterasi mengunduh seluruh dokumen di halaman terkait
+            for idx, doc_id in enumerate(doc_ids, start=1):
+                if doc_id in existing_ids:
+                    print(f"--- [Prodi: {prodi_url.split('prodiId=')[-1]}] SKIP {idx}/{len(doc_ids)}: ID {doc_id[:8]}... sudah tersimpan ---")
+                    continue
+                    
+                print(f"--- [Prodi: {prodi_url.split('=')[-1]}] Memproses {idx}/{len(doc_ids)} ---")
+                is_success = process_document(session, doc_id, db_conn, existing_urls)
+                if is_success:
+                    existing_ids.add(doc_id)
+                time.sleep(3) # Delay anti-banned
+        except Exception as e:
+            print(f"Gagal memproses prodi {prodi_url}: {e}")
             
     db_conn.close()
     print("\n=== Selesai! ===")

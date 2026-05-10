@@ -1,1 +1,9 @@
 .env
+venv/
+venv
+env/
+__pycache__/
+*.pyc
+temp_pages/
+data.csv
+.DS_Store

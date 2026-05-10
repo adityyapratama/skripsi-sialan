@@ -14,6 +14,9 @@ load_dotenv()
 CYBER_USERNAME = os.getenv("VPN_USERNAME") # NIM/NIP
 CYBER_PASSWORD = os.getenv("VPN_PASSWORD")
 
+print(f"DEBUG: VPN_USERNAME loaded: {bool(CYBER_USERNAME)}")
+print(f"DEBUG: VPN_PASSWORD loaded: {bool(CYBER_PASSWORD)}")
+
 # URL Portal IR Unair (Sesuaikan path URL jika berbeda - sesuai isu ini HTTP/HTTPS)
 IR_BASE_URL = "https://ir.unair.ac.id/opac/"
 LOGIN_URL = "https://ir.unair.ac.id/opac/site/loginanggota"
@@ -113,7 +116,7 @@ if __name__ == "__main__":
             
             # Verifikasi apakah halaman ter-load secara utuh dengan cookie yang valid
             if "Masuk" in test_response.text or "Login" in test_response.text:
-                 print("Peringatan: Cookie mungkin tidak valid, sesi diminta login kembali.")
+                 print("Peringatan: Cookie mungkin tidak valid, tpsesi diminta login kembali.")
             else:
                  print(f"Sukses mengakses halaman detail! (Status: {test_response.status_code})")
                  
