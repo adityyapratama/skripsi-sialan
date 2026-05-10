@@ -194,7 +194,7 @@ def process_document(session, doc_id, db_conn, existing_urls):
         stop_ocr = False
         
         if base_img_url:
-            for page_num in range(1, 16): # Target OCR: Halaman 1-15 sesuai instruksi
+            for page_num in range(1, 36): # Target OCR diperlebar ke Halaman 35 agar bisa menjangkau BAB 1
                 if stop_ocr:
                     break
                     
